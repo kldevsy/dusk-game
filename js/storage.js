@@ -1,5 +1,5 @@
-// salvar/carregar progresso
-const KEY = 'dusk_game_progress';
+// js/storage.js
+const KEY = 'dusk_progress';
 export function saveProgress(data) {
   localStorage.setItem(KEY, JSON.stringify(data));
 }

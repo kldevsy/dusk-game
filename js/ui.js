@@ -1,71 +1,73 @@
+// js/ui.js
 import { personagens } from './personagens.js';
 
-const chatListEl = document.getElementById('chat-list');
-const chatContainer = document.getElementById('chat-container');
-const optionsEl = document.getElementById('options-container');
-const typingEl = document.getElementById('typing-indicator');
-const msgSound = document.getElementById('msg-sound');
-const typeSound = document.getElementById('type-sound');
-const chatAvatar = document.getElementById('chat-avatar');
-const chatName = document.getElementById('chat-name');
+const chatListEl      = document.getElementById('chat-list');
+const chatContainerEl = document.getElementById('chat-container');
+const optionsEl       = document.getElementById('options-container');
+const typingEl        = document.getElementById('typing-indicator');
+const msgSound        = document.getElementById('msg-sound');
+const typeSound       = document.getElementById('type-sound');
+const avatarEl        = document.getElementById('chat-avatar');
+const nameEl          = document.getElementById('chat-name');
 
-export function playSound(el) {
-  el.currentTime = 0;
-  el.play();
+export function play(soundEl) {
+  soundEl.currentTime = 0;
+  soundEl.play();
 }
 
 export function renderChatList(chats, onSelect) {
   chatListEl.innerHTML = '';
-  chats.forEach((c, idx) => {
+  chats.forEach(id => {
+    const char = personagens[id];
     const li = document.createElement('li');
-    li.innerHTML = `<img src="${c.avatar}"/><span>${c.name}</span>`;
-    li.addEventListener('click', () => onSelect(c.id));
+    li.innerHTML = `<img src="${char.avatar}" /><span>${char.name}</span>`;
+    li.addEventListener('click', ()=> onSelect(id));
     chatListEl.appendChild(li);
   });
 }
 
 export function showChatHeader(character) {
-  chatAvatar.src = character.avatar;
-  chatName.textContent = character.name;
+  avatarEl.src = character.avatar;
+  nameEl.textContent = character.name;
 }
 
 export function renderMessages(history) {
-  chatContainer.innerHTML = '';
+  chatContainerEl.innerHTML = '';
   history.forEach(m => {
     const div = document.createElement('div');
     div.className = 'message ' + (m.autor==='player'?'sent':'received');
     if (m.autor!=='player' && m.autor!=='system') {
-      const av = document.createElement('img');
-      av.className = 'chat-avatar';
-      av.src = personajes[m.autor].avatar;
-      div.appendChild(av);
+      const img = document.createElement('img');
+      img.className = 'chat-avatar';
+      img.src = personagens[m.autor].avatar;
+      div.appendChild(img);
     }
     const span = document.createElement('span');
     span.textContent = m.text;
     div.appendChild(span);
-    chatContainer.appendChild(div);
+    chatContainerEl.appendChild(div);
   });
-  chatContainer.scrollTop = chatContainer.scrollHeight;
-  playSound(msgSound);
+  chatContainerEl.scrollTop = chatContainerEl.scrollHeight;
+  play(msgSound);
 }
 
 export function showTyping(name) {
   typingEl.textContent = `${name} está digitando...`;
   typingEl.classList.remove('hidden');
-  playSound(typeSound);
+  play(typeSound);
 }
 
 export function hideTyping() {
   typingEl.classList.add('hidden');
 }
 
-export function renderOptions(options) {
+export function renderOptions(opts) {
   optionsEl.innerHTML = '';
-  options.forEach(opt => {
+  opts.forEach(o => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
-    btn.textContent = opt.text;
-    btn.addEventListener('click', () => opt.handler(opt.text));
+    btn.textContent = o.text;
+    btn.addEventListener('click', ()=> o.handler(o.text));
     optionsEl.appendChild(btn);
   });
 }
