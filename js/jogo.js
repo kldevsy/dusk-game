@@ -8,6 +8,8 @@ const introScreen = document.getElementById('intro-screen');
 const chatListScreen = document.getElementById('chat-list-screen');
 const chatScreen = document.getElementById('chat-screen');
 const btnStart = document.getElementById('btn-start');
+const btnIniciar = document.getElementById("btn-iniciar");
+
 const btnBack = document.getElementById('btn-back');
 
 let unlockedChats = [];
@@ -40,12 +42,15 @@ function showChat() {
 }
 
 // iniciar o jogo
-const btnstart = document.getElementById('btn-start');
-btnStart.onclick = () => {
+document.addEventListener("DOMContentLoaded", () => {
+  const btnIniciar = document.getElementById("btn-iniciar");
+  btnIniciar.addEventListener("click", () => {
   unlockedChats = ['leon'];
   saveProgress({ unlockedChats });
   showList();
-};
+});
+});
+
 
 
 // voltar à lista
