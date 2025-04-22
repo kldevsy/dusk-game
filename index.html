@@ -1,16 +1,42 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dusk—Chat Story</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  Hello world
-  <script src="script.js"></script>
-</body>
 
+  <!-- TELA INICIAL aqui -->
+  <div id="intro-screen" class="screen screen--centered">
+    <h1 class="logo">Dusk</h1>
+    <button id="btn-start" class="btn">Iniciar Jogo</button>
+  </div>
+
+  <!-- LISTA DE CHATS -->
+  <div id="chat-list-screen" class="screen hidden">
+    <h2 class="header">Conversas</h2>
+    <ul id="chat-list" class="chat-list"></ul>
+  </div>
+
+  <!-- TELA DE CHAT -->
+  <div id="chat-screen" class="screen hidden">
+    <header class="chat-header">
+      <button id="btn-back" class="btn-back">←</button>
+      <img id="chat-avatar" class="chat-avatar" />
+      <span id="chat-name" class="chat-name"></span>
+    </header>
+    <div id="chat-container" class="chat-container"></div>
+    <div id="typing-indicator" class="typing hidden">Digitando...</div>
+    <div id="options-container" class="options-container"></div>
+  </div>
+
+  <!-- SONS -->
+  <audio id="msg-sound" src="assets/sounds/msg.mp3" preload="auto"></audio>
+  <audio id="type-sound" src="assets/sounds/type.mp3" preload="auto"></audio>
+
+  <!-- SCRIPTS -->
+  <script type="module" src="js/jogo.js"></script>
+</body>
 </html>
