@@ -3,11 +3,11 @@ export const personagens = {
   leon: {
     id: 'leon',
     name: 'Leon',
-    avatar: 'assets/images/avatars/leon.png'
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0Mk6ccVblLXpJEM9v90-ktMuc6vOWdwhfIdTLY5ydwMF1MarhwvDczOwp&s=10'
   },
   rafa: {
     id: 'rafa',
     name: 'Rafa',
-    avatar: 'assets/images/avatars/rafa.png'
+    avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0Mk6ccVblLXpJEM9v90-ktMuc6vOWdwhfIdTLY5ydwMF1MarhwvDczOwp&s=10'
   }
 };
